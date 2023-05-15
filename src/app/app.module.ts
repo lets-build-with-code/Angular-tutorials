@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
-import { HttpLoggerInterceptor } from './http-logger.interceptor';
+import { LoggerInterceptor } from './logger.interceptor';
 
 
 @NgModule({
@@ -21,7 +21,7 @@ import { HttpLoggerInterceptor } from './http-logger.interceptor';
     FormsModule
 
   ],
-  providers: [{provide:HTTP_INTERCEPTORS, useClass:HttpLoggerInterceptor, multi:true}],
+  providers: [{provide:HTTP_INTERCEPTORS, useClass:LoggerInterceptor, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

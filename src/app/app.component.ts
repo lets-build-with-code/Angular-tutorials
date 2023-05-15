@@ -18,18 +18,25 @@ export class AppComponent {
 
 
   constructor(private httpRequest: HttpRequestsService) {
-      this.getUserRefresh()
+    this.getUserRefresh()
   }
 
   submitUsersData() {
-
-    this.httpRequest.createUsers().subscribe()
-    this.getUserRefresh()
+    this.httpRequest.createUsers().subscribe({
+      next:res => {
+        this.getUserRefresh()
+      },
+      error:err => {
+        // console.log("error", err)
+      }
+    })
   }
 
   getUserRefresh() {
    this.httpRequest.getUsers().subscribe(res => {
     this.userData = res;
+   },error => {
+    // console.log(error)
    })
   }
 
