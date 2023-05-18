@@ -1,0 +1,7 @@
+<div class="customFont">
+    <ul *ngFor="let log of HttpLog" >
+        <li [ngClass]="(log.requestStatus === 'Successfull')? 'text-success': 'text-danger'" >
+            Http Request : {{log.requestMethod}} is{{log.requestStatus}} with url of {{log.requestUrl}}, Time Taken
+            :{{log.requestTimeTaken}} </li>
+    </ul>
+</div>

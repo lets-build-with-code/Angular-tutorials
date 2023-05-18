@@ -2,7 +2,17 @@
   
     <div class="row">
        <div class="col-6">
-        <button class="btn btn-primary" (click)="submitUsersData()">Start Post Request</button>
+        <div class="row">
+            <div class="col-12"> <button class="btn btn-primary" (click)="submitUsersData()">Start Post Request</button>&nbsp;
+                <button class="btn btn-primary"[routerLink]="['http-logger']">Click here to go Http Logger Component</button> </div>
+
+            <div class="col-12 p-0">
+
+                <router-outlet></router-outlet>
+            </div>
+
+        </div>
+       
        </div>
 
         <!-- Display the user records from backend - get request  -->
@@ -27,3 +37,4 @@
 
         </div>
     </div>
+

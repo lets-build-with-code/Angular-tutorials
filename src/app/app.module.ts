@@ -6,11 +6,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { LoggerInterceptor } from './logger.interceptor';
+import { HttpLoggerComponent } from './http-logger/http-logger.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    HttpLoggerComponent,
   ],
   imports: [
     BrowserModule,
