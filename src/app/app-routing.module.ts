@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpLoggerComponent } from './http-logger/http-logger.component';
 
 
-const routes: Routes = [{
-  path:'http-logger', component:HttpLoggerComponent
-}];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: false })],

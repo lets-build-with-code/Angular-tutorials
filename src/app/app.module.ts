@@ -3,27 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
-import { LoggerInterceptor } from './logger.interceptor';
-import { HttpLoggerComponent } from './http-logger/http-logger.component';
+import {HttpClientModule} from '@angular/common/http'
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HttpLoggerComponent,
   ],
   imports: [
-    BrowserModule,
-    
+    BrowserModule,  
     AppRoutingModule,
     NgbModule,
+    FormsModule,
     HttpClientModule,
-    FormsModule
-
   ],
-  providers: [{provide:HTTP_INTERCEPTORS, useClass:LoggerInterceptor, multi:true}],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

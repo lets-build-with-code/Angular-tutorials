@@ -1,8 +1,9 @@
 
+
 import { Component } from '@angular/core';
-import { RouteConfigLoadStart } from '@angular/router';
-import { HttpRequestsService } from './http-requests.service';
-import { Users } from './users.model';
+import { NgForm } from '@angular/forms';
+import { HttpRequestService } from './http-request.service';
+
 
 @Component({
   selector: 'app-root',
@@ -14,31 +15,32 @@ import { Users } from './users.model';
 
 export class AppComponent {
 
-  userData: any
-
-
-  constructor(private httpRequest: HttpRequestsService) {
-    this.getUserRefresh()
+  userFormInput = {
+    email:'',
+    password:'',
+    address:'',
+    city:'',
+    zip:''
   }
+  isFormSubmittedSuccessfully:boolean = false
 
-  submitUsersData() {
-    this.httpRequest.createUsers().subscribe({
-      next:res => {
-        this.getUserRefresh()
+  constructor(private httpRequest : HttpRequestService) {
+
+  }
+  submitUserDetail(userForm:NgForm) {
+    console.log("form : ", userForm.form.value, userForm);
+
+    this.httpRequest.createUser(userForm.form.value).subscribe({
+      next:res =>{ console.log(res)
+        this.isFormSubmittedSuccessfully = true;
+         userForm.resetForm();
+         setTimeout(()=> {
+          this.isFormSubmittedSuccessfully = false
+         },2000)
       },
-      error:err => {
-        // console.log("error", err)
-      }
+      error:err => console.log(err)
     })
-  }
 
-  getUserRefresh() {
-   this.httpRequest.getUsers().subscribe(res => {
-    this.userData = res;
-   },error => {
-    // console.log(error)
-   })
   }
-
 
 }
