@@ -1,7 +1,7 @@
 
 
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { HttpRequestService } from './http-request.service';
 
 
@@ -15,32 +15,29 @@ import { HttpRequestService } from './http-request.service';
 
 export class AppComponent {
 
-  userFormInput = {
-    email:'',
-    password:'',
-    address:'',
-    city:'',
-    zip:''
+  loginFormGroup! : FormGroup;
+  addrFormGroup: FormGroup = new FormGroup({
+    street : new FormControl(''),
+    city : new FormControl(''),
+    zipcode : new FormControl(''),
+
+  })
+
+  constructor(){
+      this.loginFormGroup = new FormGroup({
+        email : new FormControl('ss@test.com'),
+        password : new FormControl('1234'),
+        address : this.addrFormGroup
+      })
   }
-  isFormSubmittedSuccessfully:boolean = false
 
-  constructor(private httpRequest : HttpRequestService) {
+  login() {
+    const emailMatch = this.loginFormGroup.value.email.split('@')[1];
+    if(emailMatch === 'abc.com') {
+      this.loginFormGroup.removeControl('address');
+    }
 
-  }
-  submitUserDetail(userForm:NgForm) {
-    console.log("form : ", userForm.form.value, userForm);
-
-    this.httpRequest.createUser(userForm.form.value).subscribe({
-      next:res =>{ console.log(res)
-        this.isFormSubmittedSuccessfully = true;
-         userForm.resetForm();
-         setTimeout(()=> {
-          this.isFormSubmittedSuccessfully = false
-         },2000)
-      },
-      error:err => console.log(err)
-    })
-
+    console.log("form group : ", this.loginFormGroup, "From Values :", this.loginFormGroup.value);
   }
 
 }

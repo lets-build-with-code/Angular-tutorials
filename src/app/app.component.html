@@ -1,50 +1,17 @@
-<div class="alert alert-success" role="alert" *ngIf="isFormSubmittedSuccessfully">
-  <h4 class="alert-heading">User Data is Submitted</h4>
-</div>
+<form [formGroup]="loginFormGroup" (ngSubmit)="login()">
+  <div class="form-grou col-4 py-3">
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+      placeholder="Enter email" formControlName="email">
+  </div>
+  <div class="form-group col-4 py-3">
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+      formControlName="password">
+  </div>
 
-<form #userForm="ngForm" (ngSubmit)="submitUserDetail(userForm)">
-
-    <div class="row p-4">
-      <div class="form-group col-md-6">
-        <input type="email" class="form-control" id="inputEmail4" placeholder="Email" [(ngModel)]="userFormInput.email"  name="email" required
-        minlength="5"  #email="ngModel"
-        >
-        <span *ngIf="userForm.form.controls['email']?.touched && userForm.form.controls['email']?.hasError('required')" class="text-danger">
-          Name is Required
-        </span>
-        <span *ngIf="email.touched && userForm.form.controls['email']?.hasError('minlength')" class="text-danger">
-          Name  minimum length should be 5 character
-        </span>
-      </div>
-      <div class="form-group col-md-6">
-        <input type="password" class="form-control" id="inputPassword4" placeholder="Password" [(ngModel)]="userFormInput.password" name="password"
-        required>
-        <span *ngIf="userForm.form.controls['password']?.touched && userForm.form.controls['password']?.hasError('required')" class="text-danger">
-          Name is Required
-        </span>
-      </div>
-    </div>
-    <div class="form-group">
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" [(ngModel)]="userFormInput.address" name="address" required>
-      <span *ngIf="userForm.form.controls['address']?.touched && userForm.form.controls['address']?.hasError('required')" class="text-danger">
-        Name is Required
-      </span>
-    </div>
-   
-    <div class="row  p-4">
-      <div class="form-group col-md-6">
-        <input type="text" class="form-control" id="inputCity" placeholder="city" [(ngModel)]="userFormInput.city" name="city" required>
-        <span *ngIf="userForm.form.controls['city']?.touched && userForm.form.controls['city']?.hasError('required')" class="text-danger">
-          Name is Required
-        </span>
-      </div>
-
-      <div class="form-group col-md-2">
-        <input type="text" class="form-control" id="inputZip" placeholder="zip" [(ngModel)]="userFormInput.zip" name="zip" required>
-        <span *ngIf="userForm.form.controls['zip']?.touched && userForm.form.controls['zip']?.hasError('required')" class="text-danger">
-          Name is Required
-        </span>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid" >Sign in</button>
-  </form>
+  <div class="form-group row" [formGroup]="addrFormGroup">
+    <div class="col-4"> <input type="text" class="form-control" placeholder="Street" formControlName="street"></div>
+    <div class="col-4"><input type="text" class="form-control" placeholder="City" formControlName="city"></div>
+    <div class="col-4"><input type="text" class="form-control" placeholder="Zipcode" formControlName="zipcode"></div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
