@@ -11,23 +11,16 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
 export class AppComponent {
 
-  loginFormGroup! : FormGroup;
-  addrFormGroup: FormGroup = new FormGroup({
-    street : new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(100)]),
-    city : new FormControl('',Validators.required),
-    zipcode : new FormControl('',[Validators.required,Validators.pattern('^[0-9]*$')]),
-
+  customForm:FormGroup = new FormGroup({
+    age : new FormControl('',[Validators.required, Validators.min(5), Validators.max(100), this.ageValidator])
   })
-  constructor(){
-      this.loginFormGroup = new FormGroup({
-        email : new FormControl('',[Validators.required,Validators.email]),
-        password : new FormControl('',[Validators.required, Validators.minLength(8),Validators.maxLength(10)]),
-        address : this.addrFormGroup
-      })
-  }
 
-  login() {
-    console.log("form group : ", this.loginFormGroup, "From Values :", this.loginFormGroup.value);
-  }
+
+ageValidator(control:FormControl) {
+  return (control.value >= 25) ? {ageLimitExceed : true}: null
 }
 
+  submitAge(){
+    console.log("FormGroup : ", this.customForm, "Form Values : ", this.customForm.value)
+  }
+}

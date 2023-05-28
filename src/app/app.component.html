@@ -1,49 +1,22 @@
-<form [formGroup]="loginFormGroup" (ngSubmit)="login()">
-  <div class="form-grou col-4 py-3">
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-      placeholder="Enter email" formControlName="email">
+<form [formGroup]="customForm" (ngSubmit)="submitAge()">
+    <div class="col-4 py-2">
+        <input type="number" class="form-control" placeholder="Enter the age here" formControlName="age">
 
-    <span *ngIf="loginFormGroup.get('email')?.hasError('required') && loginFormGroup.get('email')?.touched"
-      class="text-danger">Email is Required</span>
+        <span *ngIf="customForm.get('age')?.hasError('required') && customForm.get('age')?.touched" class="text-danger">Age is
+            required</span><br>
 
-    <span  *ngIf="loginFormGroup.get('email')?.hasError('email') && loginFormGroup.get('email')?.touched"
-    class="text-danger">Email is Invalid</span>
+        <span *ngIf="customForm.get('age')?.hasError('min') && customForm.get('age')?.touched" class="text-danger">Minimum two digit
+            allowed</span><br>
 
+        <span *ngIf="customForm.get('age')?.hasError('max') && customForm.get('age')?.touched" class="text-danger">Maximum two digit
+            allowed</span><br>
 
-  </div>
-  <div class="form-group col-4 py-3">
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
-      formControlName="password">
-      <span *ngIf="loginFormGroup.get('password')?.hasError('required') && loginFormGroup.get('password')?.touched"
-      class="text-danger">Password is Required</span>
-
-    <span  *ngIf="loginFormGroup.get('password')?.hasError('minlength') && loginFormGroup.get('password')?.touched"
-    class="text-danger">Password minLength should be 8 character.</span>
-  </div>
-
-  <div class="form-group row" [formGroup]="addrFormGroup">
-    <div class="col-4"> <input type="text" class="form-control" placeholder="Street" formControlName="street">
-      <span  *ngIf="addrFormGroup.get('street')?.hasError('minlength') && addrFormGroup.get('street')?.touched"
-      class="text-danger">Street minLength should be10 character.</span>
-
-      <span  *ngIf="addrFormGroup.get('street')?.hasError('maxlength') && addrFormGroup.get('street')?.touched"
-      class="text-danger">Stree maxLength should be 100 character.</span>
-
-      <span  *ngIf="addrFormGroup.get('street')?.hasError('required') && addrFormGroup.get('street')?.touched"
-      class="text-danger">Street is Required.</span>
+        <span *ngIf="customForm.get('age')?.hasError('ageLimitExceed') && customForm.get('age')?.touched" class="text-danger">
+            Age limit exceed. It should be less than 25</span>
     </div>
-    <div class="col-4"><input type="text" class="form-control" placeholder="City" formControlName="city">
-    
-      <span  *ngIf="addrFormGroup.get('city')?.hasError('required') && addrFormGroup.get('city')?.touched"
-      class="text-danger">City is Required.</span>
+    <div>
+        <button class="btn btn-primary">Submit</button>
     </div>
-    <div class="col-4"><input type="text" class="form-control" placeholder="Zipcode" formControlName="zipcode">
-      <span  *ngIf="addrFormGroup.get('zipcode')?.hasError('required') && addrFormGroup.get('zipcode')?.touched"
-      class="text-danger">Zipcode is Required.</span>
 
-      <span  *ngIf="addrFormGroup.get('zipcode')?.hasError('pattern') && addrFormGroup.get('zipcode')?.touched"
-      class="text-danger">Zipcode should be Digits only.</span>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary" [disabled]="loginFormGroup.invalid">Submit</button>
+
 </form>
