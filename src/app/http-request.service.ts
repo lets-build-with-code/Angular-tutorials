@@ -7,14 +7,10 @@ import { Observable } from 'rxjs';
 })
 export class HttpRequestService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private httpClient : HttpClient) { }
 
-
-  createUser(formBody:any):Observable<any> {
-
+  getDetailsOfUserForEmailIsAvailableOrNot(): Observable<any> {
     const url = "http://localhost:3000/user-details";
-
-    return this.http.post<any>(url, formBody);
-
+      return this.httpClient.get<any>(url)
   }
 }

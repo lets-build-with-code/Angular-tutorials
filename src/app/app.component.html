@@ -1,22 +1,26 @@
 <form [formGroup]="customForm" (ngSubmit)="submitAge()">
-    <div class="col-4 py-2">
-        <input type="number" class="form-control" placeholder="Enter the age here" formControlName="age">
 
-        <span *ngIf="customForm.get('age')?.hasError('required') && customForm.get('age')?.touched" class="text-danger">Age is
-            required</span><br>
+    <div class="row py-2">
+        <div class="col-4 ">
+            <input type="text" class="form-control" placeholder="Enter the email here" formControlName="email">
 
-        <span *ngIf="customForm.get('age')?.hasError('min') && customForm.get('age')?.touched" class="text-danger">Minimum two digit
-            allowed</span><br>
+        </div>
+        <div class="col-4">
 
-        <span *ngIf="customForm.get('age')?.hasError('max') && customForm.get('age')?.touched" class="text-danger">Maximum two digit
-            allowed</span><br>
 
-        <span *ngIf="customForm.get('age')?.hasError('ageLimitExceed') && customForm.get('age')?.touched" class="text-danger">
-            Age limit exceed. It should be less than 25</span>
+            <p *ngIf="customForm.get('email')?.hasError('required') && customForm.get('email')?.touched"
+                class="text-danger">Email is
+                required</p>
+
+            <p *ngIf="customForm.get('email')?.hasError('emailAlreadyExist') && customForm.get('email')?.touched"
+                class="text-danger">Email already Exist. Please choose another Email ID</p>
+
+            <p *ngIf="!customForm.get('email')?.hasError('emailAlreadyExist') && customForm.get('email')?.touched"
+                class="text-success">Email is available</p>
+        </div>
+
     </div>
-    <div>
-        <button class="btn btn-primary">Submit</button>
-    </div>
 
+    <div> <button class="btn btn-primary">Submit</button></div>
 
 </form>
