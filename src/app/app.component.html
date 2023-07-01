@@ -1,26 +1,13 @@
-<form [formGroup]="customForm" (ngSubmit)="submitAge()">
+<form [formGroup]="personalForm" (ngSubmit)="submitForm()">
 
-    <div class="row py-2">
-        <div class="col-4 ">
-            <input type="text" class="form-control" placeholder="Enter the email here" formControlName="email">
+    <input type="text" class="form-control" formControlName="first_name"> &nbsp;&nbsp;
+    <input type="text" class="form-control" formControlName="last_name">
 
-        </div>
-        <div class="col-4">
-
-
-            <p *ngIf="customForm.get('email')?.hasError('required') && customForm.get('email')?.touched"
-                class="text-danger">Email is
-                required</p>
-
-            <p *ngIf="customForm.get('email')?.hasError('emailAlreadyExist') && customForm.get('email')?.touched"
-                class="text-danger">Email already Exist. Please choose another Email ID</p>
-
-            <p *ngIf="!customForm.get('email')?.hasError('emailAlreadyExist') && customForm.get('email')?.touched"
-                class="text-success">Email is available</p>
-        </div>
-
-    </div>
-
-    <div> <button class="btn btn-primary">Submit</button></div>
+    <button class="btn btn-primary">Submit Form</button>
 
 </form>
+
+<br>
+
+<button (click)="updateFormByPatchValue()" class="btn btn-warning">update Form By Patch Value</button> &nbsp;&nbsp;
+<button (click)="updateFormBySetValue()" class="btn btn-danger">update Form By Set Value</button>

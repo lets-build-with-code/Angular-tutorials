@@ -1,8 +1,7 @@
 
 import { Component } from '@angular/core';
-import { AsyncValidatorFn, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { map, Observable } from 'rxjs';
-import { HttpRequestService } from './http-request.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'app-root',
@@ -12,35 +11,27 @@ import { HttpRequestService } from './http-request.service';
 })
 
 export class AppComponent {
-
-  customForm:FormGroup = new FormGroup({
-    email : new FormControl('',[Validators.required], this.asyncEmailValidator())
-  });
-
-  constructor(private httpReq : HttpRequestService) {}
-
-  asyncEmailValidator() : AsyncValidatorFn {
-    return (control:any): Observable<{[key:string]:boolean} | null> => {
-
-      return this.httpReq.getDetailsOfUserForEmailIsAvailableOrNot().pipe(
-        map((res:any) => {
-          console.log("res : ", res, control.value)
-          const isEmailAlreadyExist = res.filter((req:any) => req.email === control.value).length ? true : false;
-
-          if(isEmailAlreadyExist) {
-            console.log("email Exist : ", isEmailAlreadyExist)
-            return {emailAlreadyExist:true}
-          }
-
-          return null;
-        })
-      )
-
-    }
-
+  personalForm!:FormGroup
+  constructor(private fb : FormBuilder) {
+    this.personalForm = this.fb.group({
+      first_name : ['Sun'],
+      last_name : ['Sha']
+    })
   }
 
-  submitAge(){
-    console.log("FormGroup : ", this.customForm, "Form Values : ", this.customForm.value)
+
+  updateFormByPatchValue() {
+     this.personalForm.patchValue({first_name:'John', last_name:'Mark'})
   }
-}
+
+  updateFormBySetValue() {
+    this.personalForm.setValue({first_name:'Roger', last_name:'Smith'})
+ }
+
+ submitForm(){
+  console.log("FormValue : ", this.personalForm.value);
+ }
+  } 
+
+
+  
