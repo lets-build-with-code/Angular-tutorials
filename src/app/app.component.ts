@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -15,22 +15,33 @@ export class AppComponent {
   constructor(private fb : FormBuilder) {
     this.personalForm = this.fb.group({
       first_name : ['Sun'],
-      last_name : ['Sha']
+      last_name : ['Sha'],
+      nominess: new FormArray([])
     })
   }
 
 
-  updateFormByPatchValue() {
-     this.personalForm.patchValue({first_name:'John', last_name:'Mark'})
+  get nominess(): FormArray {
+    return this.personalForm.get('nominess') as FormArray
   }
 
-  updateFormBySetValue() {
-    this.personalForm.setValue({first_name:'Roger', last_name:'Smith'})
- }
+  addNominess() {
+    const nominessFormGroup = this.fb.group({
+      name:[''],
+      age :[''],
+      relation:['']
+    })
+    this.nominess.push(nominessFormGroup);
+  }
 
+  removeNominess(index:number) {
+    this.nominess.removeAt(index)
+  }
+  
  submitForm(){
   console.log("FormValue : ", this.personalForm.value);
  }
+
   } 
 
 

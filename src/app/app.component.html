@@ -3,11 +3,23 @@
     <input type="text" class="form-control" formControlName="first_name"> &nbsp;&nbsp;
     <input type="text" class="form-control" formControlName="last_name">
 
+
+
+    <h1>Nominess Section <button class="btn btn-sm btn-success" (click)="addNominess()">Add Nominess</button></h1>
+    <ng-container formArrayName="nominess">
+        <div class="row" *ngFor="let n of nominess.controls;let i = index" [formGroupName]="i">
+            <div class="col-12">
+                <input type="text" formControlName="name" placeholder="Nominess {{i + 1}} Name"> &nbsp;
+                <input type="text" formControlName="age" placeholder="Nominess {{i + 1}} Age"> &nbsp;
+                <input type="text" formControlName="relation" placeholder="Nominess {{i + 1}} Relation"> &nbsp;
+
+                <button class="btn btn-sm btn-danger" (click)="removeNominess(i)">Remove Nominess</button>
+            </div>
+        </div>
+    </ng-container>
+
     <button class="btn btn-primary">Submit Form</button>
 
 </form>
 
 <br>
-
-<button (click)="updateFormByPatchValue()" class="btn btn-warning">update Form By Patch Value</button> &nbsp;&nbsp;
-<button (click)="updateFormBySetValue()" class="btn btn-danger">update Form By Set Value</button>
