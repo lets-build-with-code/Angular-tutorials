@@ -6,15 +6,33 @@
 
 
     <h1>Nominess Section <button class="btn btn-sm btn-success" (click)="addNominess()">Add Nominess</button></h1>
+
     <ng-container formArrayName="nominess">
-        <div class="row" *ngFor="let n of nominess.controls;let i = index" [formGroupName]="i">
-            <div class="col-12">
+        <div class="row border border-dark mx-2 my-2" *ngFor="let n of nominess.controls;let i = index" [formGroupName]="i">
+            <div class="p-3">
+            <div class="col-12 p-2">
                 <input type="text" formControlName="name" placeholder="Nominess {{i + 1}} Name"> &nbsp;
                 <input type="text" formControlName="age" placeholder="Nominess {{i + 1}} Age"> &nbsp;
                 <input type="text" formControlName="relation" placeholder="Nominess {{i + 1}} Relation"> &nbsp;
 
                 <button class="btn btn-sm btn-danger" (click)="removeNominess(i)">Remove Nominess</button>
+                <button class="btn btn-sm btn-dark" (click)="addAddress(i)">Add Address</button>
             </div>
+
+            <!-- Nominess Address Section -->
+            <div formArrayName="address" class="border border-dark p-2" *ngIf="getAddress(i)?.length">
+                <div class="row" *ngFor="let addr of getAddress(i).controls; let j = index">
+                    <div class="col-12" [formGroupName] = 'j'>
+                        <input type="text" formControlName="street_name" placeholder="Address {{i + 1}} Street Name"> &nbsp;
+                        <input type="text" formControlName="city" placeholder="Address {{i + 1}} City"> &nbsp;
+                        <input type="text" formControlName="state" placeholder="Address {{i + 1}} State"> &nbsp;
+                        <input type="text" formControlName="country" placeholder="Address {{i + 1}} country"> &nbsp;
+                        <input type="text" formControlName="zipcode" placeholder="Address {{i + 1}} zipcode"> &nbsp;
+                        <button class="btn btn-sm btn-warning" (click)="removeAddress(i,j)">Remove Address</button>
+                    </div>
+                </div>
+            </div>
+         </div>
         </div>
     </ng-container>
 

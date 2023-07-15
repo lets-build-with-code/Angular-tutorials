@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Form, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class AppComponent {
     this.personalForm = this.fb.group({
       first_name : ['Sun'],
       last_name : ['Sha'],
-      nominess: new FormArray([])
+      nominess: new FormArray([]),
     })
   }
 
@@ -29,15 +29,36 @@ export class AppComponent {
     const nominessFormGroup = this.fb.group({
       name:[''],
       age :[''],
-      relation:['']
+      relation:[''],
+      address: new FormArray([])
     })
     this.nominess.push(nominessFormGroup);
   }
 
-  removeNominess(index:number) {
-    this.nominess.removeAt(index)
+  removeNominess(nominessIndex:number) {
+    this.nominess.removeAt(nominessIndex)
+  }
+
+  getAddress(nominessIndex:number): FormArray {
+    return this.nominess.at(nominessIndex).get('address') as FormArray
   }
   
+ addAddress(nominessIndex:number) {
+    const addressFormGroup = this.fb.group({
+      street_name:[''],
+      city : [''],
+      state : [''],
+      country : [''],
+      zipcode : ['']
+    })
+
+    this.getAddress(nominessIndex).push(addressFormGroup);
+ }
+
+ removeAddress(nominessIndex:number, addressIndex:number) {
+   this.getAddress(nominessIndex).removeAt(addressIndex)
+ }
+ 
  submitForm(){
   console.log("FormValue : ", this.personalForm.value);
  }
