@@ -9,8 +9,10 @@ export class HttpRequestService {
 
   constructor(private httpClient : HttpClient) { }
 
-  getDetailsOfUserForEmailIsAvailableOrNot(): Observable<any> {
-    const url = "http://localhost:3000/user-details";
+  getDetailsOfUserForEmailIsAvailableOrNot(loginDetails:any): Observable<any> {
+    const username = loginDetails.username;
+    const password = loginDetails.password;
+    const url = `http://localhost:3000/users?email=${username}&password=${password}`;
       return this.httpClient.get<any>(url)
   }
 }
