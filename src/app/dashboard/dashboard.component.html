@@ -1,10 +1,15 @@
 <p>DashBoard</p>
 <p><button (click)="logout()">Logout</button></p>
-<div *ngIf="userDetails.length">
+<div *ngIf="userDetails.length" class="border">
     <p>Role : {{userDetails[0].role}}</p>
     <p>Id : {{userDetails[0].id}}</p>
     <p>Name : {{userDetails[0].name}}</p>
     <p>email : {{userDetails[0].email}}</p>
 
 </div>
+<div class="border" *ngIf="userDetails[0].isPremimumUser">
+    <button class="btn btn-sm btn-dark" [routerLink]="['user-profile']">Show User Profile</button>&nbsp;
+    <button class="btn btn-sm btn-dark" [routerLink]="['user-task']">Show UserTask</button>
+</div>
 
+<router-outlet></router-outlet>
