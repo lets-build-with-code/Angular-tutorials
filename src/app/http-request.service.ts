@@ -15,4 +15,9 @@ export class HttpRequestService {
     const url = `http://localhost:3000/users?email=${username}&password=${password}`;
       return this.httpClient.get<any>(url)
   }
+
+  getUserRole(userId:string): Observable<any> {
+    const url = `http://localhost:3000/user-role?id=${userId}`;
+      return this.httpClient.get<any>(url)
+  }
 }
