@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActivateChildGuard } from './activate-child.guard';
 import { AuthGuard } from './auth.guard';
+import { CanloadGuard } from './canload.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './dashboard/user-profile/user-profile.component';
 import { UserTaskComponent } from './dashboard/user-task/user-task.component';
@@ -17,7 +18,12 @@ const routes: Routes = [{
   canActivateChild:[ActivateChildGuard],
   children : [
     {path:'user-profile', component:UserProfileComponent},
-    {path:'user-task', component:UserTaskComponent}
+    {path:'user-task', component:UserTaskComponent},
+    {path:'user-prime-feature',
+    canLoad : [CanloadGuard],
+    loadChildren : () => import('./dashboard/prime-feature/prime-feature.module').then((m) => m.PrimeFeatureModule)
+  }
+
   ]
   
 }

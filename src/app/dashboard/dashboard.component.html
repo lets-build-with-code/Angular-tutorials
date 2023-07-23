@@ -9,7 +9,13 @@
 </div>
 <div class="border" *ngIf="userDetails[0].isPremimumUser">
     <button class="btn btn-sm btn-dark" [routerLink]="['user-profile']">Show User Profile</button>&nbsp;
-    <button class="btn btn-sm btn-dark" [routerLink]="['user-task']">Show UserTask</button>
+    <button class="btn btn-sm btn-dark" [routerLink]="['user-task']">Show UserTask</button> &nbsp; <br>
+    <hr />
+
+    <button class="btn btn-sm btn-dark" [routerLink]="['user-prime-feature']"
+     *ngIf="userDetails[0].isPrimeUser">Show Prime Features 1 [Module]</button> &nbsp;
+    <button class="btn btn-sm btn-dark" [routerLink]="['user-prime-feature/user-prime-feature2']"
+    *ngIf="userDetails[0].isPrimeUser">Show Prime Features 2 [Module]</button>
 </div>
 
 <router-outlet></router-outlet>
