@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PrimeFeature1Component } from './prime-feature1.component';
+import { NormalUserComponent } from './normal-user.component';
 
-describe('PrimeFeature1Component', () => {
-  let component: PrimeFeature1Component;
-  let fixture: ComponentFixture<PrimeFeature1Component>;
+describe('NormalUserComponent', () => {
+  let component: NormalUserComponent;
+  let fixture: ComponentFixture<NormalUserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PrimeFeature1Component ]
+      declarations: [ NormalUserComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PrimeFeature1Component);
+    fixture = TestBed.createComponent(NormalUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

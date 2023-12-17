@@ -1,13 +1,15 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ActivateChildGuard } from './activate-child.guard';
+import { AdminGuard } from './admin.guard';
 import { AuthGuard } from './auth.guard';
-import { CanloadGuard } from './canload.guard';
+import { AdminToolsComponent } from './dashboard/admin-tools/admin-tools.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserProfileComponent } from './dashboard/user-profile/user-profile.component';
-import { UserTaskComponent } from './dashboard/user-task/user-task.component';
+import { NormalUserComponent } from './dashboard/normal-user/normal-user.component';
+import { SuperAdminToolsComponent } from './dashboard/super-admin-tools/super-admin-tools.component';
+import { SupervisorComponent } from './dashboard/supervisor/supervisor.component';
 import { LoginComponent } from './login/login.component';
-import { ResolveGuard } from './resolve.guard';
+import { MatchGuard } from './match.guard';
+import { SupervisorGuard } from './supervisor.guard';
 
 
 const routes: Routes = [{
@@ -15,21 +17,15 @@ const routes: Routes = [{
 },
 {
   path:'dashboard', component:DashboardComponent,
-  resolve: {
-    resolvedData : ResolveGuard
-  },
   canActivate:[AuthGuard],
-  canActivateChild:[ActivateChildGuard],
   children : [
-    {path:'user-profile', component:UserProfileComponent},
-    {path:'user-task', component:UserTaskComponent},
-    {path:'user-prime-feature',
-    canLoad : [CanloadGuard],
-    loadChildren : () => import('./dashboard/prime-feature/prime-feature.module').then((m) => m.PrimeFeatureModule)
-  }
+        {path : 'tools', component:SuperAdminToolsComponent, canMatch : [MatchGuard]},
+        {path : 'tools', component:AdminToolsComponent, canMatch : [AdminGuard]},
+        {path : 'tools', component:SupervisorComponent,  canMatch : [SupervisorGuard] },
+        {path : 'tools', component:NormalUserComponent },
 
   ]
-  
+
 }
 ];
 

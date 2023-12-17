@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ResolveGuard } from './resolve.guard';
+import { SupervisorGuard } from './supervisor.guard';
 
-describe('ResolveGuard', () => {
-  let guard: ResolveGuard;
+describe('SupervisorGuard', () => {
+  let guard: SupervisorGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(ResolveGuard);
+    guard = TestBed.inject(SupervisorGuard);
   });
 
   it('should be created', () => {

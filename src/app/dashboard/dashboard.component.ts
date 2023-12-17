@@ -18,9 +18,6 @@ export class DashboardComponent implements OnInit {
       this.userDetails = JSON.parse(this.userDetails)
  
     }
-
-    console.log("Dashboard -> resolvedData : ", this.route.snapshot.data['resolvedData'])
-    this.role = this.route.snapshot.data['resolvedData'][0].role;
    
   }
 

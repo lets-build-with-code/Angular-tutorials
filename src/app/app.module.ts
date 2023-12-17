@@ -7,8 +7,10 @@ import {  ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserProfileComponent } from './dashboard/user-profile/user-profile.component';
-import { UserTaskComponent } from './dashboard/user-task/user-task.component'
+import { SuperAdminToolsComponent } from './dashboard/super-admin-tools/super-admin-tools.component';
+import { AdminToolsComponent } from './dashboard/admin-tools/admin-tools.component';
+import { SupervisorComponent } from './dashboard/supervisor/supervisor.component';
+import { NormalUserComponent } from './dashboard/normal-user/normal-user.component';
 
 
 @NgModule({
@@ -16,8 +18,10 @@ import { UserTaskComponent } from './dashboard/user-task/user-task.component'
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    UserProfileComponent,
-    UserTaskComponent,
+    SuperAdminToolsComponent,
+    AdminToolsComponent,
+    SupervisorComponent,
+    NormalUserComponent,
   ],
   imports: [
     BrowserModule,  

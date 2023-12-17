@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CanloadGuard } from './canload.guard';
+import { MatchGuard } from './match.guard';
 
-describe('CanloadGuard', () => {
-  let guard: CanloadGuard;
+describe('MatchGuard', () => {
+  let guard: MatchGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(CanloadGuard);
+    guard = TestBed.inject(MatchGuard);
   });
 
   it('should be created', () => {

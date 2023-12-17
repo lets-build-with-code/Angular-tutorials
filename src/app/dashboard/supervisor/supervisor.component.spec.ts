@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PrimeFeature2Component } from './prime-feature2.component';
+import { SupervisorComponent } from './supervisor.component';
 
-describe('PrimeFeature2Component', () => {
-  let component: PrimeFeature2Component;
-  let fixture: ComponentFixture<PrimeFeature2Component>;
+describe('SupervisorComponent', () => {
+  let component: SupervisorComponent;
+  let fixture: ComponentFixture<SupervisorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PrimeFeature2Component ]
+      declarations: [ SupervisorComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PrimeFeature2Component);
+    fixture = TestBed.createComponent(SupervisorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
